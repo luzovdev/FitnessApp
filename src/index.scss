@@ -24,11 +24,14 @@ body {
 }
 body {
 	line-height: 1;
+ 	 background-color: #161617;
+	 color: #D2D2D2;
 }
 input,
 button,
 textarea {
 	font-size: inherit;
+	color: inherit;
 }
 input::-ms-clear {
 	display: none;
