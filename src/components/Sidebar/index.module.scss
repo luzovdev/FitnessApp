@@ -1,9 +1,14 @@
 .wrapper{
-   flex: 0 1 5%;
    background-color: #222324;
    display: flex;
    flex-direction: column;
    align-items: center;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 999;
+   height: 100%;
+   width: 75px;
 }
 .logo{
    width: 50px;
