@@ -1,0 +1,37 @@
+.wrapper{
+   background-color: #222324;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 999;
+   height: 100%;
+   width: 75px;
+}
+.logo{
+   width: 50px;
+   height: 50px;
+   margin-bottom: 35px;
+   img{
+      max-width: 100%;
+   }
+}
+
+.navWrapper{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   >:not(:last-child){
+      margin-bottom: 20px;
+   }
+}
+
+.icon{
+   width: 25px;
+   height: 25px;
+   img{
+      max-width: 100%;
+   }
+}

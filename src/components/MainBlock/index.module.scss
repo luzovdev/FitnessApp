@@ -1,0 +1,32 @@
+.wrapper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+}
+.trigger{
+   flex: 0 1 350px;
+}
+.text{
+   margin:0px 0px 30px 0px;
+}
+
+.btn{
+   display: inline-block;
+   background-color:#7094f3;
+   color: #fafcfe;
+   width: 200px;
+   padding: 20px 0;
+   border-radius: 15px;
+   &:hover{
+      background-color:#5778d1;
+   }
+}
+
+.image{
+   flex: 0 1 730px;
+   height: 475px;
+   img{
+      max-width: 100%;
+   }
+}
