@@ -1,16 +1,17 @@
 import React from 'react';
 import styles from './index.module.scss';
 
+import { MuscleGroup } from '../muscleGroup';
 
 export const MuscleGroups = () => {
    return (
       <div className={styles.wrapper}>
-         <div>
-            icon
-         </div>
-         <div>
-            name muscle
-         </div>
+         <MuscleGroup />
+         <MuscleGroup />
+         <MuscleGroup />
+         <MuscleGroup />
+         <MuscleGroup />
+         <MuscleGroup />
       </div>
    )
 };
