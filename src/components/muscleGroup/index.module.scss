@@ -1,10 +1,17 @@
 .wrapper{
    text-align: center;
-   border-radius: 50%;
-   border: 1px solid #fff;
-   padding: 10px; 
    cursor: pointer;
+   transition: all .3s ease 0s;
+   &:hover{
+      border-color: #7094F3;
+      color: #7094F3;     
+   }
+   &:active {
+      border-color: #5372c7;
+      color: #5372c7;     
+   }
 }
+
 
 
 .muscleImg {

@@ -1,15 +1,16 @@
 import React from 'react';
 import styles from './index.module.scss'
-import bicepsImg from '../../assets/images/muscleGroup/biceps.png'
 
+import muscleGroupIcon from '../../assets/images/muscleGroupIcon.png'
 export const MuscleGroup = () => {
+
    return (
       <div className={styles.wrapper}>
          <div className={styles.muscleImg}>
-            <img src={bicepsImg} alt="biceps" />
+            <img src={muscleGroupIcon} alt='Бицепс' />
          </div>
          <div>
-            Biceps
+            Бицепс
          </div>
       </div>
    )
