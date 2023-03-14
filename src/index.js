@@ -6,35 +6,30 @@ import './index.scss';
 import { Sidebar } from "./components/Sidebar/index";
 import { Home } from './pages/home';
 import { Exercises } from './pages/Exercises';
-import { Exercise } from './pages/Exercise';
 import { Calendar } from './pages/Calendar';
 import { Calc } from './pages/Calc';
 
+import { Provider } from 'react-redux';
+import { store } from './redux';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<Sidebar />}>
-        <Route index element={<Home />} />
-        <Route path='/exercises' element={<Exercises />} />
-        <Route path='/exercise' element={<Exercise />} />
-        <Route path='/calendar' element={<Calendar />} />
-        <Route path='/calc' element={<Calc />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  <div className='wrapper'>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Sidebar />}>
+            <Route index element={<Home />} />
+            <Route path='/exercises' element={<Exercises />} />
+            <Route path='/calendar' element={<Calendar />} />
+            <Route path='/calc' element={<Calc />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  </div>
 );
 
 
-
-// <Route path='/' element={<Header />}>
-//   <Route index element={<Shop />} />
-//   <Route path='contacts' element={<Contacts />} />
-//   <Route path='cart' element={<Cart />} />
-//   <Route path='product/:productId' element={<Product />} />
-//   <Route path='product' element={<Navigate to='/' />} />
-//   <Route path='*' element={<NotFound />} />
-// </Route>

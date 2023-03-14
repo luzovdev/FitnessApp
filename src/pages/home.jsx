@@ -1,18 +1,18 @@
 import React from "react";
-import { MainBlock } from "../components/MainBlock";
+import { InfoMainPage } from "../components/infoMainPage";
 
 
 
 
 
-const wrapperForPage = {
+const wrapperForHomePage = {
    paddingLeft: '75px',
 
 }
 export const Home = () => {
    return (
-      <main style={wrapperForPage}>
-         <MainBlock />
+      <main style={wrapperForHomePage}>
+         <InfoMainPage />
       </main>
    )
 }

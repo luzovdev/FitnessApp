@@ -1,0 +1,52 @@
+@import "../../vars";
+.wrapper{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   border: 1px solid #fff;
+   padding: 10px;
+   transition: all .3s ease 0s;
+   @media (min-width:$md2+px) {
+      &:hover{
+         border-color: $hoverButtonColor;
+         color: $hoverButtonColor;     
+      }
+      &:active {
+         border-color: $activeClickButton;
+         color: $activeClickButton;     
+      }
+   }
+}
+
+.active{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   border: 1px solid #fff;
+   padding: 10px;
+   transition: all .3s ease 0s;
+   @media (min-width:$md2+px) {
+      border-color: $activeClickButton;
+      color: $activeClickButton;       
+   }
+}
+
+
+
+.muscleImg {
+   width: 100px;
+   height: 100px;
+   img{
+      max-width: 100% ;
+   }
+}
+
+.muscleName {
+   text-transform: uppercase;
+   letter-spacing: 1.4px;
+   margin-top: 10px;
+}

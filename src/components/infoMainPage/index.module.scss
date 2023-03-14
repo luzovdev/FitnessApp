@@ -1,3 +1,4 @@
+@import "../../vars";
 .wrapper{
    display: flex;
    justify-content: center;
@@ -13,13 +14,16 @@
 
 .btn{
    display: inline-block;
-   background-color:#7094f3;
+   background-color:$buttonColor;
    color: #fafcfe;
    width: 200px;
    padding: 20px 0;
    border-radius: 15px;
    &:hover{
-      background-color:#5778d1;
+      background-color:$hoverButtonColor;
+   }
+   &:active {
+      background-color: $activeClickButton;
    }
 }
 
