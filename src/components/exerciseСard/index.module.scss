@@ -1,10 +1,23 @@
+@import "../../vars";
 .wrapper{
    display: flex;
    flex-direction: column;
    align-items: center;
    height: 300px;
    width: 300px;
+   color: $textColor;
    cursor: pointer;
+   transition: transform .3s ease 0s;
+   &:hover{
+      transform: scale(1.07);
+      .name{
+         color: $hoverButtonColor;
+      }
+   }
+   @media (max-width:$md3+px) {
+      width: 250px;
+      height: 250px;
+   }
 }
 
 .image{
@@ -20,17 +33,26 @@
       object-fit: cover;
    }
 }
-.targetMuscle{
+.info{
    position: absolute;
-   top: 10px;
-   left: 5px;
+   bottom: 10px;
+   right: 5px;
    z-index: 5;
+   display: flex;
+   gap: 10px;
+}
+
+.infoItem{
    color: #000;
    text-transform: uppercase;
    border-radius: 10px;
    border: 2px solid #000;
-   padding: 5px;
+   padding: 3px;
+   font-size: 11px;
+   background-color: papayawhip;
+
 }
+
 .name{
    text-transform: uppercase;
    margin-top: 10px;

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Exercise = () => {
+export const ExerciseDetail = () => {
    return (
       <h2>Exercise</h2>
    )

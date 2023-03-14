@@ -6,22 +6,23 @@ import { SearchExerciseInput } from '../searchExerciseInput';
 
 import { fetchData, exerciseOptions } from '../../utils/fetchData';
 
-export const SearchExercise = () => {
+export const SearchExercises = ({ setExercises }) => {
    const [search, setSearch] = useState('');
-   const [exercise, setExercise] = useState([]);
-   console.log(exercise);
    const handleSearch = async () => {
       if (search) {
-         const exerciseData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
-         const searchedExercise = exerciseData.filter((exercise) => {
+         //написать loading в значении true
+         const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
+         const searchedExercises = exercisesData.filter((exercise) => {
             return exercise.target.toLowerCase().includes(search) ||
-               exercise.bodyPart.toLowerCase().includes(search)
+               exercise.bodyPart.toLowerCase().includes(search) ||
+               exercise.equipment.toLowerCase().includes(search)
          });
-
-         setExercise(searchedExercise);
          setSearch('');
+         setExercises(searchedExercises);
+
+         //написать loading в значении false
       }
-   }
+   };
 
    return (
       <div className={styles.wrapper}>
@@ -29,5 +30,5 @@ export const SearchExercise = () => {
          <SearchButton handleSearch={handleSearch} />
       </div>
    )
-}
+};
 

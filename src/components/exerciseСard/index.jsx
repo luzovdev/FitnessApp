@@ -1,19 +1,25 @@
 import React from 'react';
 import styles from './index.module.scss'
-import patrick from '../../assets/images/patrick.jpg'
-export const ExerciseCard = () => {
+import { Link } from 'react-router-dom';
+export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id }) => {
+
    return (
-      <div className={styles.wrapper}>
+      <Link to={`/exercise/${id}`} className={styles.wrapper} >
          <div className={styles.image}>
-            <img src={patrick} alt="patrick" />
-            <div className={styles.targetMuscle}>
-               <span>targer muscle</span>
+            <img src={gifUrl} alt={bodyPart} />
+            <div className={styles.info}>
+               <div className={styles.infoItem}>
+                  {target}
+               </div>
+               <div className={styles.infoItem}>
+                  {bodyPart}
+               </div>
             </div>
          </div>
          <div className={styles.name}>
-            name of exercise
+            {name}
          </div>
-      </div>
+      </Link >
    )
 };
 

@@ -1,8 +1,12 @@
+@import '../../vars';
 .input{
-   width: 100%;
+   flex: 0 1 500px ;
    border-radius: 15px;
    margin-right: 10px;
-   padding: 5px 10px;
+   padding: 0px 10px;
    color: #000;
-
+   @media (max-width:$md4+px) {
+      padding: 0;
+      margin-right: 5px;
+   }
 }
