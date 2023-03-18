@@ -2,27 +2,27 @@ import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 
 import { ExerciseCard } from "../exerciseСard";
-import { fetchData, exerciseOptions } from "../../utils/fetchData";
 
-export const ExerciseList = ({ exercises, chosenMuscleGroup, setExercises }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { getExercises, getExercisesBySelectedMuscleGroup } from "../../redux/slices/exercises";
+import { selectExercisesItems } from "../../redux/slices/exercises";
+
+export const ExerciseList = ({ chosenMuscleGroup }) => {
+
+   const dispatch = useDispatch();
+   const exercises = useSelector(selectExercisesItems);
 
    useEffect(() => {
-      const fetchExerciseData = async () => {
-         let exerciseData = [];
-         if (chosenMuscleGroup === "all") {
-            exerciseData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions)
-         } else {
-            exerciseData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${chosenMuscleGroup}`, exerciseOptions)
-         }
-         setExercises(exerciseData);
-      };
-
-      fetchExerciseData();
+      if (chosenMuscleGroup === "all") {
+         dispatch(getExercises());
+      } else {
+         dispatch(getExercisesBySelectedMuscleGroup(chosenMuscleGroup));
+      }
    }, [chosenMuscleGroup]);
 
    return (
       <div className={styles.wrapper}>
-         {exercises.map((exerciseItem) => <ExerciseCard {...exerciseItem} key={exerciseItem.id} />)}
+         {exercises?.map((exerciseItem) => <ExerciseCard {...exerciseItem} key={exerciseItem.id} />)}
       </div>
    )
 };
