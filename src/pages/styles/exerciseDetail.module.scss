@@ -1,0 +1,23 @@
+@import '../../vars';
+.wrapper{
+   min-height: 100%;
+   overflow: hidden;
+   max-width: 1440px;
+   margin: 0 auto;
+   position: relative;
+}
+.back{
+   display: inline-block;
+   color: $textColor;
+   font-size: 14px;
+   text-transform: uppercase;
+   border: 2px solid $textColor;
+   padding: 3px;
+   transition: all .3s ease 0s;
+   @media (min-width:$md2+px) {
+      &:hover{
+         color: $hoverButtonColor;
+         border: 2px solid $hoverButtonColor;
+      }
+   }
+}

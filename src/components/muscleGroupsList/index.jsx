@@ -3,8 +3,6 @@ import styles from './index.module.scss';
 import { fetchData, exerciseOptions } from '../../utils/fetchData';
 
 import Slider from 'react-slick';
-// import "slick-carousel/slick/slick.scss";
-// import "slick-carousel/slick/slick-theme.scss";
 import './muscleGroupsSlider.scss'
 
 

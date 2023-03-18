@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import styles from "./index.module.scss";
 
 import logo from "../../assets/images/logo.png";
@@ -9,14 +9,17 @@ import calendar from "../../assets/images/icons/calendar.png"
 
 
 export const Sidebar = () => {
+
+   const activeClassName = ({ isActive }) => isActive ? styles.active : styles.icon;
+
    return (
       <>
          <div className={styles.wrapper}>
-            <Link to='/' className={styles.logo}><img src={logo} alt="logo" /></Link>
+            <NavLink to='/' className={styles.logo}><img src={logo} alt="logo" /></NavLink>
             <nav className={styles.navWrapper}>
-               <Link to='/exercises' className={styles.icon}><img src={exercises} alt="ixercises" /></Link>
-               <Link to='/calc' className={styles.icon}><img src={calculator} alt="calculator" /></Link>
-               <Link to='/calendar' className={styles.icon}><img src={calendar} alt="calendar" /></Link>
+               <NavLink to='/exercises' className={activeClassName}><img src={exercises} alt="ixercises" /></NavLink>
+               <NavLink to='/calc' className={activeClassName}><img src={calculator} alt="calculator" /></NavLink>
+               <NavLink to='/calendar' className={activeClassName}><img src={calendar} alt="calendar" /></NavLink>
             </nav>
          </div>
          <Outlet />

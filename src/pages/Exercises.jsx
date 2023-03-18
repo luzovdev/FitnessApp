@@ -5,13 +5,13 @@ import { SearchExercises } from "../components/serchExercise";
 import { MuscleGroupsList } from "../components/muscleGroupsList";
 import { ExerciseList } from "../components/exerciseList";
 import { Paginate } from "../components/paginate";
-
 const wrapperForExercisesPage = {
    minHeight: '100%',
    overflow: 'hidden',
    maxWidth: '1440px',
    margin: '0 auto',
 };
+
 
 
 export const Exercises = () => {
@@ -50,3 +50,5 @@ export const Exercises = () => {
       </div>
    )
 };
+
+
