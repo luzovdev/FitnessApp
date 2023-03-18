@@ -8,6 +8,7 @@ import { Home } from './pages/home';
 import { Exercises } from './pages/Exercises';
 import { Calendar } from './pages/Calendar';
 import { Calc } from './pages/Calc';
+import { ExerciseDetail } from './pages/ExerciseDetail'
 
 import { Provider } from 'react-redux';
 import { store } from './redux';
@@ -25,6 +26,7 @@ root.render(
             <Route path='/exercises' element={<Exercises />} />
             <Route path='/calendar' element={<Calendar />} />
             <Route path='/calc' element={<Calc />} />
+            <Route path='/exercise/:id' element={<ExerciseDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>
