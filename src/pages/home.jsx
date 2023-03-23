@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoMainPage } from "../components/infoMainPage";
+import { InfoMainPage } from "../components/Home/infoMainPage";
 
 
 
