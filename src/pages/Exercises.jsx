@@ -1,29 +1,27 @@
 import React, { useState } from "react";
+import './styles/container.scss'
+import { useSelector } from "react-redux";
 
-import { InfoExercisesPage } from "../components/infoExercisesPage";
-import { SearchExercises } from "../components/serchExercise";
-import { MuscleGroupsList } from "../components/muscleGroupsList";
-import { ExerciseList } from "../components/exerciseList";
+import { selectExercisesItems } from "../redux/slices/exercises";
+
+import { InfoExercisesPage } from "../components/Exercises/infoExercisesPage";
+import { SearchExercises } from "../components/Exercises/serchExercise";
+import { MuscleGroupsList } from "../components/Exercises/muscleGroupsList";
+import { ExerciseList } from "../components/Exercises/exerciseList";
 import { Paginate } from "../components/paginate";
-const wrapperForExercisesPage = {
-   minHeight: '100%',
-   overflow: 'hidden',
-   maxWidth: '1440px',
-   margin: '0 auto',
-};
 
 
 
 export const Exercises = () => {
-   const [exercises, setExercises] = useState([]);
+   const exercises = useSelector(selectExercisesItems);
+
    const [chosenMuscleGroup, setChosenMuscleGroup] = useState('all');
-   const [loading, setLoading] = useState(false);
 
    const exercisesPerPage = 10;
    const [itemOffset, setItemOffset] = useState(0);
    const endOffset = itemOffset + exercisesPerPage;
-   const currentExercises = exercises.slice(itemOffset, endOffset);
-   const pageCount = Math.ceil(exercises.length / exercisesPerPage);
+   const currentExercises = exercises?.slice(itemOffset, endOffset);
+   const pageCount = Math.ceil(exercises?.length / exercisesPerPage);
 
    const handlePageClick = (event) => {
       const newOffset = (event.selected * exercisesPerPage) % exercises.length;
@@ -32,16 +30,16 @@ export const Exercises = () => {
 
 
    return (
-      <div style={wrapperForExercisesPage}>
+      <div className='container'>
          <InfoExercisesPage />
-         <SearchExercises setExercises={setExercises} />
+         <SearchExercises />
          <MuscleGroupsList
             chosenMuscleGroup={chosenMuscleGroup}
             setChosenMuscleGroup={setChosenMuscleGroup} />
          <ExerciseList
             exercises={currentExercises}
             chosenMuscleGroup={chosenMuscleGroup}
-            setExercises={setExercises} />
+         />
          <Paginate
             pageCount={pageCount}
             handlePageClick={handlePageClick}

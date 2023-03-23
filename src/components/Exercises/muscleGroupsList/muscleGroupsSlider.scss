@@ -1,0 +1,70 @@
+@import '../../../vars';
+.muscleGroupsSlider{
+   position: relative;
+   .slick-track {
+      display: flex; 
+   }
+   .slick-slide {
+      margin: 0 15px;
+   }
+   .slick-dots {
+      position: absolute;
+      bottom: -45px;
+      display: block;
+      text-align: center;
+      width: 100%;
+      li {
+         position: relative;
+         display: inline-block;
+         height: 15px;
+         width: 15px;
+         margin: 0 5px;
+         cursor: pointer;
+         button {
+               background: #fff;
+               display: block;
+               border-radius: 50%;
+               height: 100%;
+               width: 100%;
+               padding: 5px;
+               font-size: 0px;
+               cursor: pointer;
+         }
+         &.slick-active button {
+            background: $activeClickButton;
+         }
+         @media (max-width:$md2+px) {
+            height: 10px;
+            width: 10px;
+         }
+         @media (max-width:$md4+px) {
+            height: 7px;
+            width: 7px;
+         }
+      }
+   }
+   .slick-prev,
+   .slick-next {
+      position: absolute;
+      bottom: -45px;
+      right: 0;
+      display: block;
+      width: 20px;
+      height: 20px;
+      font-size: 0px;
+      background-color: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #fff;
+      transform: translate(0, -50%);
+      &:hover{
+         background-color: $buttonColor;
+      }
+   }
+   .slick-prev {
+      margin-right: 50px;
+   }
+}
+
+
+

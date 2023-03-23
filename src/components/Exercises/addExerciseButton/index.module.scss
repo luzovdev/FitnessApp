@@ -1,0 +1,25 @@
+@import '../../../vars';
+
+.btn {
+   position: absolute;
+   bottom: 30px;
+   right: 10px;
+   z-index: 5;
+   height: 30px;
+   width: 30px;
+   background-color: $buttonColor;
+   border-radius: 50%;
+   font-size: 14px;
+   font-weight: 700;
+   color: $buttonFontColor;
+   transition:background-color .3s ease 0s ;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   &:hover{
+      background-color: $hoverButtonColor;
+   }
+   &:active{
+      background-color: $activeClickButton;
+   }
+}
