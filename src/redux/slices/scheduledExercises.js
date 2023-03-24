@@ -1,4 +1,4 @@
-import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 
 const startState = {

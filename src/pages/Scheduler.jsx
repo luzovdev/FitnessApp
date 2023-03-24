@@ -3,7 +3,7 @@ import './styles/container.scss'
 import styles from './styles/scheduler.module.scss'
 
 import { ScheduledExercisesList } from "../components/Scheduler/scheduledExercisesList";
-
+import { AddToSchedulerButton } from "../components/Scheduler/addToSchedulerButton";
 
 export const Scheduler = () => {
 
@@ -14,6 +14,7 @@ export const Scheduler = () => {
             <p className={styles.description__text}> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde repellat tempora odio blanditiis voluptatibus at repellendus pariatur, iste ad nostrum libero quidem enim tenetur doloribus. Sit tempora blanditiis temporibus provident?</p>
          </div>
          <ScheduledExercisesList />
+         <AddToSchedulerButton />
       </div>
 
    )
