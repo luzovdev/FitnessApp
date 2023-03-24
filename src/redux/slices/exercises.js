@@ -3,23 +3,35 @@ import { fetchData, exerciseOptions } from "../../utils/fetchData";
 
 const startState = {
    exercisesItems: null,
+   muscleGroupsItems: null,
    isLoading: false,
-   error: null,
 };
 
 export const getExercises = createAsyncThunk(
    'exercises/getExercises',
    async (_, { dispatch }) => {
+      dispatch(setIsLoading(true))
       const res = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
       dispatch(setExercises(res))
+      dispatch(setIsLoading(false))
+
    }
 );
 
 export const getExercisesBySelectedMuscleGroup = createAsyncThunk(
    'exercises/getExercisesBySelectedMuscleGroup',
    async (muscleGroup, { dispatch }) => {
+      dispatch(setIsLoading(true))
       const res = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${muscleGroup}`, exerciseOptions);
       dispatch(setExercises(res))
+      dispatch(setIsLoading(false))
+   }
+);
+export const getMuscleGroups = createAsyncThunk(
+   'exercises/getMuscleGroups',
+   async (_, { dispatch }) => {
+      const res = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
+      dispatch(setMuscleGroups(res))
    }
 );
 
@@ -29,14 +41,12 @@ export const exercisesSlice = createSlice({
    reducers: {
       setExercises: (state, { payload }) => {
          state.exercisesItems = payload;
-         state.error = null;
+      },
+      setMuscleGroups: (state, { payload }) => {
+         state.muscleGroupsItems = ['all', ...payload]
       },
       setIsLoading: (state, { payload }) => {
          state.isLoading = payload;
-      },
-      setError: (state, { payload }) => {
-         state.error = payload;
-         state.exercises = null;
       }
    }
 });
@@ -44,7 +54,7 @@ export const exercisesSlice = createSlice({
 
 export const exercisesReducer = exercisesSlice.reducer;
 
-export const { setExercises, setIsLoading, setError } = exercisesSlice.actions;
+export const { setExercises, setIsLoading, setMuscleGroups } = exercisesSlice.actions;
 
 export const selectExercises = ({ exercises }) => exercises;
 
@@ -57,10 +67,10 @@ export const selectIsLoading = createSelector(
    selectExercises,
    ({ isLoading }) => isLoading
 );
-
-export const selectError = createSelector(
+export const selectMuscleGroupsItems = createSelector(
    selectExercises,
-   ({ error }) => error
+   ({ muscleGroupsItems }) => muscleGroupsItems
 );
+
 
 

@@ -1,18 +1,14 @@
 .results {
-   
    margin: 15px 0px;
-   border: 1px solid #fff;
    &__items{
       display: flex; 
       text-align: center;
+      justify-content: space-between;
    }
    &__item{
       margin-right: 15px;
       p{
          margin-bottom: 5px;
       }
-   }
-   &__name{
-      
    }
 }

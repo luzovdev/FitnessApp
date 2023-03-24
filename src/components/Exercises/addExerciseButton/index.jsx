@@ -6,7 +6,8 @@ export const AddExerciseButton = ({ handleAddExercise, id }) => {
    return (
       <button
          className={styles.btn}
-         onClick={() => handleAddExercise(id)}
+         // onClick={() => handleAddExercise(id)}
+         onClick={() => handleAddExercise()}
       >+</button>
    )
 }

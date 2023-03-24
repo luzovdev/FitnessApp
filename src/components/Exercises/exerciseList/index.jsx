@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 
 import { ExerciseCard } from "../exerciseСard";
+import { Preloader } from "../../preloader";
 
-import { useDispatch } from "react-redux";
-import { getExercises, getExercisesBySelectedMuscleGroup } from "../../../redux/slices/exercises";
+import { useDispatch, useSelector } from "react-redux";
+import { getExercises, getExercisesBySelectedMuscleGroup, selectIsLoading } from "../../../redux/slices/exercises";
 
 export const ExerciseList = ({ chosenMuscleGroup, exercises }) => {
 
    const dispatch = useDispatch();
+   const isLoading = useSelector(selectIsLoading);
+
+   const shouldShowExercise = exercises && !isLoading;
 
    useEffect(() => {
       if (chosenMuscleGroup === "all") {
@@ -20,7 +24,8 @@ export const ExerciseList = ({ chosenMuscleGroup, exercises }) => {
 
    return (
       <div className={styles.wrapper}>
-         {exercises?.map((exerciseItem) => <ExerciseCard {...exerciseItem} key={exerciseItem.id} />)}
+         {shouldShowExercise && exercises?.map((exerciseItem) => <ExerciseCard {...exerciseItem} key={exerciseItem.id} />)}
+         {isLoading && <Preloader />}
       </div>
    )
 };

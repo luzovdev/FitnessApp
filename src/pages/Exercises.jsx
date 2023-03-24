@@ -17,8 +17,8 @@ export const Exercises = () => {
 
    const [chosenMuscleGroup, setChosenMuscleGroup] = useState('all');
 
-   const exercisesPerPage = 10;
    const [itemOffset, setItemOffset] = useState(0);
+   const exercisesPerPage = 10;
    const endOffset = itemOffset + exercisesPerPage;
    const currentExercises = exercises?.slice(itemOffset, endOffset);
    const pageCount = Math.ceil(exercises?.length / exercisesPerPage);

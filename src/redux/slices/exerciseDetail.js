@@ -5,7 +5,6 @@ const startState = {
    exersiceDetailItem: null,
    exersiceVideosItems: null,
    isLoading: false,
-   error: null
 };
 
 export const getExerciseDetail = createAsyncThunk(
@@ -35,10 +34,6 @@ export const exerciseDetailSlice = createSlice({
 
       setIsLoading: (state, { payload }) => {
          state.isLoading = payload;
-      },
-      setError: (state, { payload }) => {
-         state.error = payload;
-         state.exersiceDetailItem = null;
       }
    }
 });
@@ -46,7 +41,7 @@ export const exerciseDetailSlice = createSlice({
 
 export const exerciseDetailReducer = exerciseDetailSlice.reducer;
 
-export const { setExerciseDetailItem, setIsLoading, setError, setExerciseVideosItems } = exerciseDetailSlice.actions;
+export const { setExerciseDetailItem, setIsLoading, setExerciseVideosItems } = exerciseDetailSlice.actions;
 
 export const selectExerciseDetail = ({ exerciseDetail }) => exerciseDetail;
 
@@ -62,7 +57,4 @@ export const selectIsLoading = createSelector(
    selectExerciseDetail,
    ({ isLoading }) => isLoading
 );
-export const selectError = createSelector(
-   selectExerciseDetail,
-   ({ error }) => error
-);
+

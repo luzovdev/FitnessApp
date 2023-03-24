@@ -4,15 +4,24 @@ import { Link } from 'react-router-dom';
 
 import { AddExerciseButton } from '../addExerciseButton';
 
-import { getScheduledExercises } from '../../../redux/slices/scheduledExercises';
+import { setScheduledExercises } from '../../../redux/slices/scheduledExercises';
 import { useDispatch } from 'react-redux';
 
 export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id }) => {
 
    const dispatch = useDispatch();
 
-   const handleAddExercise = (itemId) => {
-      dispatch(getScheduledExercises(itemId))
+   const handleAddExercise = () => {
+
+      const scheduleExercise = {
+         id: id,
+         name: name,
+         gifUrl: gifUrl,
+         completed: false,
+         powerIndicators: []
+      }
+
+      dispatch(setScheduledExercises(scheduleExercise))
    };
 
 

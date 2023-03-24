@@ -3,11 +3,11 @@ import styles from './index.module.scss';
 
 import searchIcon from '../../../assets/images/icons/search.svg';
 
-export const SearchButton = ({ handleSearch }) => {
+export const SearchButton = ({ handleSearchButton }) => {
 
    return (
       <button className={styles.btn}
-         onClick={handleSearch}
+         onClick={handleSearchButton}
       >
          <img src={searchIcon} alt="search" />
       </button>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.scss';
 
 import { SearchButton } from '../searchButton';
@@ -13,7 +13,7 @@ export const SearchExercises = () => {
    const exercises = useSelector(selectExercisesItems);
    const dispatch = useDispatch();
 
-   const handleSearch = () => {
+   const getSearch = () => {
       if (search) {
          const searchedExercises = exercises?.filter((exercise) => {
             return exercise.target.toLowerCase().includes(search) ||
@@ -23,12 +23,24 @@ export const SearchExercises = () => {
          setSearch('');
          dispatch(setExercises(searchedExercises));
       }
+   };
+
+   const handleSearchButton = () => {
+      getSearch()
+   };
+
+   const handleSerchInput = (event) => {
+      if (event.key === 'Enter') {
+         getSearch()
+      }
    }
+
+
 
    return (
       <div className={styles.wrapper}>
-         <SearchExerciseInput search={search} setSearch={setSearch} />
-         <SearchButton handleSearch={handleSearch} />
+         <SearchExerciseInput search={search} setSearch={setSearch} handleSerchInput={handleSerchInput} />
+         <SearchButton handleSearchButton={handleSearchButton} />
       </div>
    )
 };

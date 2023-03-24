@@ -1,18 +1,9 @@
 import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchData, exerciseOptions } from "../../utils/fetchData"
 
 
 const startState = {
    scheduledExercisesItem: [],
-
-}
-export const getScheduledExercises = createAsyncThunk(
-   'scheduledExercises/getScheduledExercises',
-   async (id, { dispatch }) => {
-      const exercisesById = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`, exerciseOptions);
-      dispatch(setScheduledExercises(exercisesById))
-   }
-);
+};
 
 
 export const scheduledExercisesSlice = createSlice({
@@ -20,16 +11,28 @@ export const scheduledExercisesSlice = createSlice({
    initialState: startState,
    reducers: {
       setScheduledExercises: (state, { payload }) => {
-         state.scheduledExercisesItem.push(payload)
+         state.scheduledExercisesItem.push(payload);
       },
       removeScheduledExercises: (state, { payload }) => {
-         // delete state.scheduledExercisesItem[payload];
+         state.scheduledExercisesItem = state.scheduledExercisesItem.filter((item) => item.id !== payload);
+      },
+      toggleСompletedScheduledExercise: (state, { payload }) => {
+         const toggleScheduledExercise = state.scheduledExercisesItem.find((item) => item.id === payload);
+         toggleScheduledExercise.completed = !toggleScheduledExercise.completed;
+      },
+      addPowerIndicators: (state, { payload }) => {
+         const exercise = state.scheduledExercisesItem.find((item) => item.id === payload.id);
+         exercise.powerIndicators.push(payload.indicators)
       }
    }
 });
 
 export const scheduledExercisesReducer = scheduledExercisesSlice.reducer;
-export const { setScheduledExercises, removeScheduledExercises } = scheduledExercisesSlice.actions;
+export const {
+   setScheduledExercises,
+   removeScheduledExercises,
+   toggleСompletedScheduledExercise,
+   addPowerIndicators } = scheduledExercisesSlice.actions;
 
 export const selectScheduledExercises = ({ scheduledExercises }) => scheduledExercises;
 
@@ -38,6 +41,7 @@ export const selectScheduledExercisesItem = createSelector(
    selectScheduledExercises,
    ({ scheduledExercisesItem }) => scheduledExercisesItem
 );
+
 
 
 

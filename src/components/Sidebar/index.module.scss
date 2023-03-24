@@ -51,7 +51,11 @@
    }
 }
 
+
 .active{
+   @media (max-width:$md2+px) {
+      border: none;
+   }
    @extend .icon;
    border-right: 2px solid $hoverButtonColor;
 }

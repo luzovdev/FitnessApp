@@ -1,3 +1,5 @@
+@import '../../../vars';
+
 .wrapper{
    display: flex;
    flex-direction: column;
@@ -5,7 +7,14 @@
    border-radius: 10px;
    width: 100%;
    padding: 10px;
-  
+   margin-top: 30px;
+   @media (max-width:$md3+px) {
+      margin-top: 20px;
+   }
+   &__completed {
+      @extend.wrapper;
+      opacity: 0.3;
+   }
 }
 .top{
    display: flex;
@@ -14,11 +23,17 @@
 }
 
 .image {
-   width: 50px;
-   height: 50px;
+   width: 70px;
+   height: 70px;
    border-radius: 50%;
    position: relative;
    overflow: hidden;
+   margin-right: 10px;
+   @media (max-width:$md3+px) {
+      width: 45px;
+      height: 45px;
+   
+   }
    img{
       position: absolute;
       top: 0;
@@ -29,11 +44,55 @@
    }
 }
 
+.name {
+   text-transform: uppercase;
+   margin-right: 10px;
+   @media (max-width:$md3+px) {
+      font-size: 14px;
+   
+   }
+   &__completed {
+      text-transform: uppercase;
+      text-decoration: line-through;
+   }
+}
+
+.controls{
+   flex: 0 0 100px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   @media (max-width:$md3+px) {
+      flex: 0 0 90px;
+   }
+   
+}
+
 .icon{
    width: 20px;
    height: 20px;
    img{
       max-width: 100%;
    }
+   &__disabled {
+      width: 20px;
+      height: 20px;
+      img{
+         max-width: 100%;
+      }
+      overflow: 0;
+      visibility: hidden;
+   }
 }
+
+
+.indicators{
+  max-width: 250px;
+  margin-top: 20px;
+  .lables{
+   display: flex;
+   justify-content: space-between;
+  }
+}
+
 

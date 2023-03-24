@@ -1,42 +1,73 @@
 import React, { useState } from "react";
 import styles from "./index.module.scss";
+import { NavLink } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { removeScheduledExercises, toggleСompletedScheduledExercise } from "../../../redux/slices/scheduledExercises";
 
 import editIcon from '../../../assets/images/icons/pencil.png';
 import removeIcon from '../../../assets/images/icons/remove.png';
-import compileIcon from '../../../assets/images/icons/tick.png'
+import сompletedIcon from '../../../assets/images/icons/tick.png'
 
 import { InputOfPowerIndicators } from "../inputOfPowerIndicators";
 import { PowerIndicators } from "../powerIndicators";
 
-export const ScheduledExercisesItem = ({ gifUrl, name, bodyPart, id, removeScheduledExercises }) => {
+export const ScheduledExercisesItem = ({ gifUrl, name, id, powerIndicators, completed }) => {
 
+   const dispatch = useDispatch();
    const [isEdit, setIsEdit] = useState(false);
+
+
+   const removeExerciseHandler = (itemId) => {
+      dispatch(removeScheduledExercises(itemId))
+   };
+
+   const toggleExerciseCompletedHandler = (itemId) => {
+      dispatch(toggleСompletedScheduledExercise(itemId))
+   };
 
 
 
    return (
-      <div className={styles.wrapper}>
+      <div className={completed ? styles.wrapper__completed : styles.wrapper}>
          <div className={styles.top}>
-            <div className={styles.image}>
-               <img src={gifUrl} alt={name} />
-            </div>
-            <div>
-               <p>{bodyPart}</p>
+            <NavLink to={`/exercise/${id}`}>
+               <div className={styles.image}>
+                  <img src={gifUrl} alt={name} />
+               </div>
+            </NavLink>
+            <div className={completed ? styles.name__completed : styles.name}>
                <p>{name}</p>
             </div>
-            <button className={styles.icon}>
-               <img src={removeIcon} alt="compileIcon" />
-            </button>
-            <button onClick={() => removeScheduledExercises(id)} className={styles.icon}>
-               <img src={compileIcon} alt="removeIcon" />
-            </button>
-            <button className={styles.icon} onClick={() => setIsEdit(!isEdit)}>
-               <img src={editIcon} alt="editIcon" />
-            </button>
-
+            <div className={styles.controls}>
+               <button
+                  onClick={() => removeExerciseHandler(id)}
+                  className={styles.icon}
+               >
+                  <img src={removeIcon} alt="removeIcon" />
+               </button>
+               <button
+                  className={styles.icon}
+                  onClick={() => toggleExerciseCompletedHandler(id)}
+               >
+                  <img src={сompletedIcon} alt="сompletedIcon" />
+               </button>
+               <button className={completed ? styles.icon__disabled : styles.icon} onClick={() => setIsEdit(!isEdit)}>
+                  <img src={editIcon} alt="editIcon" />
+               </button>
+            </div>
          </div>
-         <PowerIndicators />
-         {isEdit && <InputOfPowerIndicators />}
+         <div className={styles.indicators}>
+            <div className={styles.lables}>
+               <span>Approaches</span>
+               <span>Weight</span>
+               <span>Replays</span>
+            </div>
+            {powerIndicators.map((powerIndicator, index) => {
+               return <PowerIndicators powerIndicator={powerIndicator} approaches={index + 1} key={index} />
+            })}
+         </div>
+         {isEdit && !completed ? <InputOfPowerIndicators id={id} /> : ''}
       </div >
    )
 }

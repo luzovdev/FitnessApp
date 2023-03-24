@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './index.module.scss';
-import { fetchData, exerciseOptions } from '../../../utils/fetchData';
+
 
 import Slider from 'react-slick';
 import './muscleGroupsSlider.scss'
 
-
-
+import { useSelector, useDispatch } from 'react-redux';
+import { selectMuscleGroupsItems, getMuscleGroups } from "../../../redux/slices/exercises";
 
 import { MuscleGroupItem } from '../muscleGroupItem';
 
+import arrowRigth from '../../../assets/images/icons/right-arrow.png';
+import arrowLeft from '../../../assets/images/icons/left-arrow.png';
+
+
+
 export const MuscleGroupsList = ({ chosenMuscleGroup, setChosenMuscleGroup }) => {
-   // const [muscleGroups, setMuscleGroups] = useState([]);
+   const dispatch = useDispatch();
 
-   // useEffect(() => {
-   //    const fetchMuscleGroups = async () => {
-   //       const muscleGroupsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
-   //       setMuscleGroups(['all', ...muscleGroupsData])
-   //    }
+   useEffect(() => {
+      dispatch(getMuscleGroups())
+   }, []);
 
-   //    fetchMuscleGroups();
-   // }, []);
+   const muscleGroups = useSelector(selectMuscleGroupsItems);
 
-   const muscleGroups = ["all", "back", "cardio", "chest", "lower arms", "lower legs", "neck", "shoulders", "upper arms", "upper legs", "waist"];
    const sliderSettings = {
       dots: true,
       infinite: true,
@@ -30,6 +31,8 @@ export const MuscleGroupsList = ({ chosenMuscleGroup, setChosenMuscleGroup }) =>
       slidesToShow: 4,
       slidesToScroll: 4,
       className: 'muscleGroupsSlider',
+      nextArrow: <img src={arrowRigth} alt="next" />,
+      prevArrow: <img src={arrowLeft} alt="prev" />,
       responsive: [
          {
             breakpoint: 991.98,
@@ -66,7 +69,7 @@ export const MuscleGroupsList = ({ chosenMuscleGroup, setChosenMuscleGroup }) =>
    return (
       <div className={styles.wrapper} >
          <Slider {...sliderSettings}>
-            {muscleGroups.map((muscleGroup) => (<MuscleGroupItem muscleGroup={muscleGroup}
+            {muscleGroups?.map((muscleGroup) => (<MuscleGroupItem muscleGroup={muscleGroup}
                chosenMuscleGroup={chosenMuscleGroup}
                setChosenMuscleGroup={setChosenMuscleGroup}
                key={muscleGroup.id || muscleGroup}

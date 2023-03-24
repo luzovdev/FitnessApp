@@ -1,12 +1,20 @@
-@import "../../../vars";
+@import "../../vars";
 .wrapper{
    display: flex;
    justify-content: center;
    align-items: center;
-   min-height: 100vh;
+   @media (max-width:600px) {
+      flex-direction: column;
+      justify-content: start;
+   }
 }
 .trigger{
    flex: 0 1 350px;
+   @media (max-width:600px) {
+      width: 100%;
+      order: 2; 
+      flex: 0 1 auto;
+   }
 }
 .text{
    margin:0px 0px 30px 0px;
@@ -30,7 +38,18 @@
 .image{
    flex: 0 1 730px;
    height: 475px;
+   position: relative;
+   @media (max-width:600px) {
+      width: 100%;
+      order: 1;
+      flex: 0 1 275px;
+   }
    img{
-      max-width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
    }
 }
