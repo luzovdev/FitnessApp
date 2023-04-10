@@ -22,4 +22,14 @@
    &:active{
       background-color: $activeClickButton;
    }
+   &__added {
+      @extend.btn;
+      background-color: rgb(52, 129, 52);
+      &:hover{
+         background-color:  rgb(35, 99, 35);
+      }
+      &:active{
+         background-color: rgb(20, 66, 20);
+      }
+   }
 }

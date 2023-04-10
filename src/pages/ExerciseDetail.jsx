@@ -9,7 +9,7 @@ import { ExerciseVideos } from "../components/ExerciseDetail/exerciseVideos";
 import { useSelector, useDispatch } from "react-redux";
 import { getExerciseDetail, selectExersiceDetailItem, selectExersiceVideosItems, selectIsLoading } from "../redux/slices/exerciseDetail";
 
-import { Preloader } from "../components/preloader";
+import { Preloader } from "../components/UI/preloader";
 
 
 

@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import styles from "./index.module.scss";
 
 import { ExerciseCard } from "../exerciseСard";
-import { Preloader } from "../../preloader";
+import { Preloader } from "../../UI/preloader";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getExercises, getExercisesBySelectedMuscleGroup, selectIsLoading } from "../../../redux/slices/exercises";
 
 export const ExerciseList = ({ chosenMuscleGroup, exercises }) => {
-
+   console.log(exercises);
    const dispatch = useDispatch();
    const isLoading = useSelector(selectIsLoading);
 

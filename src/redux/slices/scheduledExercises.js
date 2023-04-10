@@ -11,7 +11,8 @@ export const scheduledExercisesSlice = createSlice({
    initialState: startState,
    reducers: {
       setScheduledExercises: (state, { payload }) => {
-         state.scheduledExercisesItem.push(payload);
+         const existItem = state.scheduledExercisesItem.find((item) => item.id === payload.id);
+         state.scheduledExercisesItem = existItem ? state.scheduledExercisesItem : [...state.scheduledExercisesItem, payload];
       },
       removeScheduledExercises: (state, { payload }) => {
          state.scheduledExercisesItem = state.scheduledExercisesItem.filter((item) => item.id !== payload);
@@ -23,7 +24,7 @@ export const scheduledExercisesSlice = createSlice({
       addPowerIndicators: (state, { payload }) => {
          const exercise = state.scheduledExercisesItem.find((item) => item.id === payload.id);
          exercise.powerIndicators.push(payload.indicators)
-      }
+      },
    }
 });
 
@@ -32,7 +33,8 @@ export const {
    setScheduledExercises,
    removeScheduledExercises,
    toggleСompletedScheduledExercise,
-   addPowerIndicators } = scheduledExercisesSlice.actions;
+   addPowerIndicators
+} = scheduledExercisesSlice.actions;
 
 export const selectScheduledExercises = ({ scheduledExercises }) => scheduledExercises;
 
@@ -41,6 +43,7 @@ export const selectScheduledExercisesItem = createSelector(
    selectScheduledExercises,
    ({ scheduledExercisesItem }) => scheduledExercisesItem
 );
+
 
 
 

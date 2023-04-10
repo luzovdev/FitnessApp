@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.scss';
 
 import { Sidebar } from "./components/Sidebar/index";
-import { Home } from './pages/home';
+import { Home } from './pages/Home';
 import { Exercises } from './pages/Exercises';
 import { Scheduler } from './pages/Scheduler';
 import { ExerciseDetail } from './pages/ExerciseDetail'

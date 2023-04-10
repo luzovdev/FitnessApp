@@ -12,9 +12,8 @@ export const getExercises = createAsyncThunk(
    async (_, { dispatch }) => {
       dispatch(setIsLoading(true))
       const res = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
-      dispatch(setExercises(res))
+      dispatch(setExercises(res.map(exercise => ({ ...exercise, isAdded: false }))))
       dispatch(setIsLoading(false))
-
    }
 );
 
@@ -23,10 +22,11 @@ export const getExercisesBySelectedMuscleGroup = createAsyncThunk(
    async (muscleGroup, { dispatch }) => {
       dispatch(setIsLoading(true))
       const res = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${muscleGroup}`, exerciseOptions);
-      dispatch(setExercises(res))
+      dispatch(setExercises(res.map(exercise => ({ ...exercise, isAdded: false }))))
       dispatch(setIsLoading(false))
    }
 );
+
 export const getMuscleGroups = createAsyncThunk(
    'exercises/getMuscleGroups',
    async (_, { dispatch }) => {
@@ -47,6 +47,12 @@ export const exercisesSlice = createSlice({
       },
       setIsLoading: (state, { payload }) => {
          state.isLoading = payload;
+      },
+      toggleIsAdded: (state, { payload }) => {
+         state.exercisesItems = state.exercisesItems.map(({ isAdded, ...exercise }) => ({
+            ...exercise,
+            isAdded: exercise.id === payload ? !isAdded : isAdded
+         }))
       }
    }
 });
@@ -54,7 +60,7 @@ export const exercisesSlice = createSlice({
 
 export const exercisesReducer = exercisesSlice.reducer;
 
-export const { setExercises, setIsLoading, setMuscleGroups } = exercisesSlice.actions;
+export const { setExercises, setIsLoading, setMuscleGroups, toggleIsAdded } = exercisesSlice.actions;
 
 export const selectExercises = ({ exercises }) => exercises;
 

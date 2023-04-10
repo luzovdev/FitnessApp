@@ -2,13 +2,13 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import styles from "./index.module.scss";
 
-export const Paginate = ({ pageCount, handlePageClick }) => {
-
+export const Paginate = ({ pageCount, handlePageClick, currentPage }) => {
    return (
       <ReactPaginate
          breakLabel="..."
          onPageChange={handlePageClick}
          pageRangeDisplayed={2}
+         forcePage={currentPage}
          pageCount={pageCount}
          renderOnZeroPageCount={null}
          containerClassName={styles.pagination}

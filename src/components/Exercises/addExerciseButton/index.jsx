@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./index.module.scss"
-export const AddExerciseButton = ({ handleAddExercise, id }) => {
+export const AddExerciseButton = ({ handleAddExercise, isAdded }) => {
 
 
    return (
       <button
-         className={styles.btn}
-         // onClick={() => handleAddExercise(id)}
+         className={isAdded ? styles.btn__added : styles.btn}
          onClick={() => handleAddExercise()}
-      >+</button>
+      >{isAdded ? '✔' : '+'}</button>
+
    )
-}
+};
+

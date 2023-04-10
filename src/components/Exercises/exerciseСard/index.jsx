@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './index.module.scss'
 import { Link } from 'react-router-dom';
 
 import { AddExerciseButton } from '../addExerciseButton';
 
 import { setScheduledExercises } from '../../../redux/slices/scheduledExercises';
+import { toggleIsAdded } from '../../../redux/slices/exercises'
+
 import { useDispatch } from 'react-redux';
 
-export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id }) => {
+export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id, isAdded }) => {
+
 
    const dispatch = useDispatch();
+   // console.log('Render Card Exercises');
 
    const handleAddExercise = () => {
-
       const scheduleExercise = {
          id: id,
          name: name,
@@ -20,10 +23,9 @@ export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id }) => {
          completed: false,
          powerIndicators: []
       }
-
       dispatch(setScheduledExercises(scheduleExercise))
+      dispatch(toggleIsAdded(id))
    };
-
 
 
    return (
@@ -44,7 +46,10 @@ export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id }) => {
                {name}
             </div>
          </Link >
-         <AddExerciseButton handleAddExercise={handleAddExercise} id={id} />
+         <AddExerciseButton
+            handleAddExercise={handleAddExercise}
+            isAdded={isAdded}
+         />
       </div>
    )
 };
