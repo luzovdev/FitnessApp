@@ -1,32 +1,28 @@
-import React from 'react';
-import styles from './index.module.scss'
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import styles from './index.module.scss'
 
 import { AddExerciseButton } from '../addExerciseButton';
 
-import { setScheduledExercises } from '../../../redux/slices/scheduledExercises';
-import { toggleIsAdded } from '../../../redux/slices/exercises'
-
-import { useDispatch } from 'react-redux';
-
-export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id, isAdded }) => {
+import { selectScheduledExercisesItem } from '../../../redux/slices/scheduledExercises';
 
 
-   const dispatch = useDispatch();
-   // console.log('Render Card Exercises');
 
-   const handleAddExercise = () => {
-      const scheduleExercise = {
-         id: id,
-         name: name,
-         gifUrl: gifUrl,
-         completed: false,
-         powerIndicators: []
+export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id, handlerAddExercise }) => {
+
+   const scheduledExercises = useSelector(selectScheduledExercisesItem);
+   const [isAdded, setIsAdded] = useState(false);
+
+
+   useEffect(() => {
+      const addedExercise = scheduledExercises.find((exercises) => exercises.id === id);
+      if (addedExercise) {
+         setIsAdded(true)
+      } else {
+         setIsAdded(false)
       }
-      dispatch(setScheduledExercises(scheduleExercise))
-      dispatch(toggleIsAdded(id))
-   };
-
+   }, [scheduledExercises])
 
    return (
       <div className={styles.card}>
@@ -47,7 +43,10 @@ export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id, isAdded }) =>
             </div>
          </Link >
          <AddExerciseButton
-            handleAddExercise={handleAddExercise}
+            handlerAddExercise={handlerAddExercise}
+            id={id}
+            name={name}
+            gifUrl={gifUrl}
             isAdded={isAdded}
          />
       </div>

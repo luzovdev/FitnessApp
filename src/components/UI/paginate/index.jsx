@@ -2,11 +2,11 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import styles from "./index.module.scss";
 
-export const Paginate = ({ pageCount, handlePageClick, currentPage }) => {
+export const Paginate = ({ pageCount, handlerPageClick, currentPage }) => {
    return (
       <ReactPaginate
          breakLabel="..."
-         onPageChange={handlePageClick}
+         onPageChange={handlerPageClick}
          pageRangeDisplayed={2}
          forcePage={currentPage}
          pageCount={pageCount}

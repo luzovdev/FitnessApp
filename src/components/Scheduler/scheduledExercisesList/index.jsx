@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectScheduledExercisesItem } from "../../../redux/slices/scheduledExercises";
 
 export const ScheduledExercisesList = () => {
+   console.log('Render ScheduledExercisesList')
    const scheduledExercises = useSelector(selectScheduledExercisesItem);
    return (
       <div className={styles.wrapper}>
