@@ -1,15 +1,17 @@
 import React from "react";
-import styles from './index.module.scss'
-import { ScheduledExercisesItem } from "../scheduledExercisesItem";
 import { useSelector } from "react-redux";
+import styles from './index.module.scss'
+
+import { ScheduledExercisesItem } from "../scheduledExercisesItem";
+
 import { selectScheduledExercisesItem } from "../../../redux/slices/scheduledExercises";
 
-export const ScheduledExercisesList = () => {
-   console.log('Render ScheduledExercisesList')
-   const scheduledExercises = useSelector(selectScheduledExercisesItem);
+export const ScheduledExercisesList = ({ removeExerciseHandler }) => {
+   const exercises = useSelector(selectScheduledExercisesItem);
+
    return (
       <div className={styles.wrapper}>
-         {scheduledExercises.map((item) => <ScheduledExercisesItem {...item} key={item.id} />)}
+         {exercises?.map((item) => <ScheduledExercisesItem {...item} removeExerciseHandler={removeExerciseHandler} key={item.id} />)}
       </div>
    )
 }

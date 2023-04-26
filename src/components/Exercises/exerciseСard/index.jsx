@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.scss'
 
 import { AddExerciseButton } from '../addExerciseButton';
 
-import { selectScheduledExercisesItem } from '../../../redux/slices/scheduledExercises';
-
 
 
 export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id, handlerAddExercise }) => {
 
-   const scheduledExercises = useSelector(selectScheduledExercisesItem);
    const [isAdded, setIsAdded] = useState(false);
-
-
-   useEffect(() => {
-      const addedExercise = scheduledExercises.find((exercises) => exercises.id === id);
-      if (addedExercise) {
-         setIsAdded(true)
-      } else {
-         setIsAdded(false)
-      }
-   }, [scheduledExercises])
 
    return (
       <div className={styles.card}>
@@ -47,6 +33,7 @@ export const ExerciseCard = ({ bodyPart, name, gifUrl, target, id, handlerAddExe
             id={id}
             name={name}
             gifUrl={gifUrl}
+            setIsAdded={setIsAdded}
             isAdded={isAdded}
          />
       </div>

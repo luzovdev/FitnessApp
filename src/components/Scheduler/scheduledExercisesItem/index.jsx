@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+
 import styles from "./index.module.scss";
 import { NavLink } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { removeScheduledExercises, toggleСompletedScheduledExercise } from "../../../redux/slices/scheduledExercises";
+import { toggleСompletedScheduledExercise } from "../../../redux/slices/scheduledExercises";
 
 import editIcon from '../../../assets/images/icons/pencil.png';
 import removeIcon from '../../../assets/images/icons/remove.png';
@@ -12,20 +13,15 @@ import сompletedIcon from '../../../assets/images/icons/tick.png'
 import { InputOfPowerIndicators } from "../inputOfPowerIndicators";
 import { PowerIndicators } from "../powerIndicators";
 
-export const ScheduledExercisesItem = ({ gifUrl, name, id, powerIndicators, completed }) => {
+export const ScheduledExercisesItem = ({ gifUrl, name, id, powerIndicators, completed, removeExerciseHandler }) => {
 
    const dispatch = useDispatch();
    const [isEdit, setIsEdit] = useState(false);
 
 
-   const removeExerciseHandler = (itemId) => {
-      dispatch(removeScheduledExercises(itemId))
-   };
-
    const toggleExerciseCompletedHandler = (itemId) => {
       dispatch(toggleСompletedScheduledExercise(itemId))
    };
-
 
 
    return (
@@ -41,7 +37,7 @@ export const ScheduledExercisesItem = ({ gifUrl, name, id, powerIndicators, comp
             </div>
             <div className={styles.controls}>
                <button
-                  onClick={() => removeExerciseHandler(id)}
+                  onClick={() => removeExerciseHandler(id, name, gifUrl, completed, powerIndicators)}
                   className={styles.icon}
                >
                   <img src={removeIcon} alt="removeIcon" />

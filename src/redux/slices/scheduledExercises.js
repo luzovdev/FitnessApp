@@ -1,6 +1,7 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 
+
 const startState = {
    scheduledExercisesItem: [],
 };
@@ -11,11 +12,12 @@ export const scheduledExercisesSlice = createSlice({
    initialState: startState,
    reducers: {
       setScheduledExercises: (state, { payload }) => {
-         const existItem = state.scheduledExercisesItem.find((item) => item.id === payload.id);
-         state.scheduledExercisesItem = existItem ? state.scheduledExercisesItem : [...state.scheduledExercisesItem, payload];
-      },
-      removeScheduledExercises: (state, { payload }) => {
-         state.scheduledExercisesItem = state.scheduledExercisesItem.filter((item) => item.id !== payload);
+         if (payload) {
+            const { exercises } = payload;
+            state.scheduledExercisesItem = exercises;
+         } else {
+            state.scheduledExercisesItem = [];
+         }
       },
       toggleСompletedScheduledExercise: (state, { payload }) => {
          const toggleScheduledExercise = state.scheduledExercisesItem.find((item) => item.id === payload);
@@ -31,7 +33,6 @@ export const scheduledExercisesSlice = createSlice({
 export const scheduledExercisesReducer = scheduledExercisesSlice.reducer;
 export const {
    setScheduledExercises,
-   removeScheduledExercises,
    toggleСompletedScheduledExercise,
    addPowerIndicators
 } = scheduledExercisesSlice.actions;
