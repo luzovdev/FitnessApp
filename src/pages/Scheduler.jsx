@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-
 import styles from './styles/scheduler.module.scss';
 
 import './styles/container.scss';
@@ -15,16 +14,13 @@ import { changeDate } from "../redux/slices/date";
 import { setScheduledExercises } from '../redux/slices/scheduledExercises'
 
 import { db } from '../firebase/firebase-config';
-import { setDoc, doc, getDoc, updateDoc, arrayRemove, onSnapshot } from "firebase/firestore";
-
-
-
-
+import { setDoc, doc, getDoc, updateDoc, arrayRemove, onSnapshot, collection, getDocs } from "firebase/firestore";
 
 
 export const Scheduler = () => {
    const dispatch = useDispatch();
    const [date, setDate] = useState(new Date());
+   const [scheduledDates, setScheduledDates] = useState([]);
    const scheduledExercisesRef = doc(db, 'scheduledExercises', `${date.toDateString()}`);
 
    const scheduleTraining = async () => {
@@ -48,6 +44,20 @@ export const Scheduler = () => {
       })
    };
 
+
+   useEffect(() => {
+      const getSelectDays = async () => {
+         let datesArr = [];
+         const querySnapshot = await getDocs(collection(db, "scheduledExercises"));
+         querySnapshot.forEach((doc) => {
+            datesArr.push(doc.id)
+         })
+         setScheduledDates(datesArr)
+      };
+      getSelectDays();
+   }, [date])
+
+
    useEffect(() => {
       dispatch(changeDate(date.toDateString()))
       onSnapshot(scheduledExercisesRef, (scheduledExercisesDoc) => {
@@ -55,6 +65,11 @@ export const Scheduler = () => {
       })
    }, [date, dispatch])
 
+
+   const highlightScheduledDate = (dateEl) => {
+      const foundEl = scheduledDates?.find((scheduledDate) => scheduledDate === dateEl.toDateString());
+      return foundEl ? 'react-calendar__tile--scheduled' : ''
+   }
 
    return (
       <div className="container">
@@ -65,7 +80,8 @@ export const Scheduler = () => {
          <Calendar
             onChange={setDate}
             value={date}
-            className={['react-calendar']}
+            locale={"en-EN"}
+            tileClassName={({ date }) => highlightScheduledDate(date)}
          />
          <ScheduledExercisesList
             removeExerciseHandler={removeExerciseHandler}
@@ -76,3 +92,4 @@ export const Scheduler = () => {
       </div>
    )
 }
+

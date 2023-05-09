@@ -1,3 +1,5 @@
+@import '../../vars.scss';
+
 .react-calendar {
    width: 350px;
    max-width: 100%;
@@ -101,6 +103,7 @@
    background: none;
    text-align: center;
    line-height: 16px;
+  
  }
  
  .react-calendar__tile:disabled {
@@ -109,17 +112,20 @@
  
  .react-calendar__tile:enabled:hover,
  .react-calendar__tile:enabled:focus {
-   background-color: #e6e6e6;
- }
+    @media (min-width:$md2 + px ) {
+      background: #006edc;
+    }
+   
+}
  
  .react-calendar__tile--now {
-   background: #ffff76;
+   background: transparent;
  }
  
  .react-calendar__tile--now:enabled:hover,
  .react-calendar__tile--now:enabled:focus {
-   background: #ffffa9;
- }
+    background: transparent;
+}
  
  .react-calendar__tile--hasActive {
    background: #76baff;
@@ -127,20 +133,31 @@
  
  .react-calendar__tile--hasActive:enabled:hover,
  .react-calendar__tile--hasActive:enabled:focus {
-   background: #a9d4ff;
+  @media (min-width:$md2 + px ) {
+    background: #a9d4ff;
+  }
  }
  
  .react-calendar__tile--active {
    background: #006edc;
    color: white;
+   
  }
  
  .react-calendar__tile--active:enabled:hover,
  .react-calendar__tile--active:enabled:focus {
-   background: #1087ff;
+  @media (min-width:$md2 + px ) {
+    background: #1087ff;
+  }
  }
  
  .react-calendar--selectRange .react-calendar__tile--hover {
    background-color: #e6e6e6;
+ }
+
+
+ .react-calendar__tile--scheduled {
+    background :#d10000;
+    color:#fff;
  }
  

@@ -19,8 +19,9 @@ import { selectDateValue } from "../redux/slices/date";
 
 export const Exercises = () => {
    const exercises = useSelector(selectExercisesItems);
-   const dispatch = useDispatch();
    const date = useSelector(selectDateValue);
+   const dispatch = useDispatch();
+
    const scheduledExercisesCollectionRef = doc(db, 'scheduledExercises', `${date}`);
 
    const [chosenMuscleGroup, setChosenMuscleGroup] = useState('all');
