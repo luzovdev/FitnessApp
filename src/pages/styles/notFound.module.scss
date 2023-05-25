@@ -1,0 +1,31 @@
+@import '../../vars';
+.wrapper{
+   min-height: 100%;
+   overflow: hidden;
+   max-width: 1440px;
+   margin: 0 auto;
+   text-align: center;
+}
+.numError{
+   font-size: 28px;
+   font-weight: 700;
+}
+.text {
+   padding: 10px 0;
+}
+.btn{
+   display: inline-block;
+   background-color:$buttonColor;
+   color: #fafcfe;
+   width: 200px;
+   padding: 20px 0;
+   border-radius: 15px;
+   @media (min-width:$md2+ px) {
+      &:hover{
+         background-color:$hoverButtonColor;
+      }
+      &:active {
+         background-color: $activeClickButton;
+      }
+   }
+}

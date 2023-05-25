@@ -3,7 +3,6 @@ import { NavLink, Outlet } from "react-router-dom";
 import styles from "./index.module.scss";
 
 import logo from "../../assets/images/logo.png";
-import exercises from "../../assets/images/icons/exercising.png";
 import calendar from "../../assets/images/icons/calendar.png"
 
 
@@ -16,8 +15,7 @@ export const Sidebar = () => {
          <div className={styles.wrapper}>
             <NavLink to='/' className={styles.logo}><img src={logo} alt="logo" /></NavLink>
             <nav className={styles.navWrapper}>
-               <NavLink to='/exercises' className={activeClassName}><img src={exercises} alt="ixercises" /></NavLink>
-               <NavLink to='/scheduler' className={activeClassName}><img src={calendar} alt="calendar" /></NavLink>
+               <NavLink to='/scheduler' className={activeClassName}><img src={calendar} alt="scheduler" /></NavLink>
             </nav>
          </div>
          <Outlet />

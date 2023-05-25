@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
 
-import './styles/container.scss';
+import styles from './styles/exercises.module.scss';
 
 import { InfoExercisesPage } from "../components/Exercises/infoExercisesPage";
 import { SearchExercises } from "../components/Exercises/serchExercise";
@@ -61,7 +61,7 @@ export const Exercises = () => {
    }, [chosenMuscleGroup, dispatch]);
 
    return (
-      <div className='container'>
+      <div className={styles.container}>
          <InfoExercisesPage />
          <SearchExercises />
          <MuscleGroupsList

@@ -3,15 +3,15 @@ import { useDispatch } from "react-redux";
 
 import styles from './styles/scheduler.module.scss';
 
-import './styles/container.scss';
-import './styles/calendar.scss'
+import { changeDate } from "../redux/slices/date";
+import { setScheduledExercises } from '../redux/slices/scheduledExercises';
 
 import { ScheduledExercisesList } from "../components/Scheduler/scheduledExercisesList";
 import { AddToSchedulerButton } from "../components/Scheduler/addToSchedulerButton";
-import Calendar from 'react-calendar';
 
-import { changeDate } from "../redux/slices/date";
-import { setScheduledExercises } from '../redux/slices/scheduledExercises'
+
+import Calendar from 'react-calendar';
+import './styles/calendar.scss'
 
 import { db } from '../firebase/firebase-config';
 import { setDoc, doc, getDoc, updateDoc, arrayRemove, onSnapshot, collection, getDocs } from "firebase/firestore";
@@ -44,6 +44,11 @@ export const Scheduler = () => {
       })
    };
 
+   const highlightScheduledDate = (dateEl) => {
+      const foundEl = scheduledDates?.find((scheduledDate) => scheduledDate === dateEl.toDateString());
+      return foundEl ? 'react-calendar__tile--scheduled' : ''
+   }
+
 
    useEffect(() => {
       const getSelectDays = async () => {
@@ -66,13 +71,10 @@ export const Scheduler = () => {
    }, [date, dispatch])
 
 
-   const highlightScheduledDate = (dateEl) => {
-      const foundEl = scheduledDates?.find((scheduledDate) => scheduledDate === dateEl.toDateString());
-      return foundEl ? 'react-calendar__tile--scheduled' : ''
-   }
+
 
    return (
-      <div className="container">
+      <div className={styles.container}>
          <div className={styles.description}>
             <h2 className={styles.description__title}>Scheduler</h2>
             <p className={styles.description__text}> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde repellat tempora odio blanditiis voluptatibus at repellendus pariatur, iste ad nostrum libero quidem enim tenetur doloribus. Sit tempora blanditiis temporibus provident?</p>

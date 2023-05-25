@@ -7,14 +7,12 @@ import { addPowerIndicators } from "../../../redux/slices/scheduledExercises";
 import tick from '../../../assets/images/icons/tick.png';
 
 
-
 export const InputOfPowerIndicators = ({ id }) => {
 
    const [weight, setWeight] = useState('');
    const [replays, setReplays] = useState('');
 
    const dispatch = useDispatch();
-
 
    const addPowerIndicatorsHandler = (id) => {
       const indicators = {
@@ -23,7 +21,6 @@ export const InputOfPowerIndicators = ({ id }) => {
       }
       dispatch(addPowerIndicators({ id, indicators }))
    }
-
 
    return (
       <div className={styles.wrapper}>
